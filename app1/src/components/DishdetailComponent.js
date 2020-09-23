@@ -10,43 +10,57 @@ class Dishdetail extends Component {
     }
 
     renderDish(dish) {
-        return (
-            <Card key={dish.id}>
-                <CardImg src={dish.image} alt={dish.name} />
-                <CardBody>
-                    <CardTitle>{dish.name}</CardTitle>
-                    <CardText>{dish.description}</CardText>
-                </CardBody>
-            </Card>
-        );
+        if (dish != null) {
+            return (
+                <Card key={dish.id}>
+                    <CardImg src={dish.image} alt={dish.name} />
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>
+            );
+        }
+        else {
+            return (
+                <div></div>
+            );
+        }
     }
 
     renderComments(dish) {
-
-        const comment = dish.comments.map((item) => {
-
+        if (dish == null) {
             return (
-                <ul key={item.id} className="list-unstyled">
-                    <p>{item.comment}</p>
-                    <p>--{item.author},{item.date}</p>
-                </ul>
+                <div></div>
             );
-        });
-        return (
-            <div className="col-12">
-                <h4>Comments</h4>
-                {comment}
-            </div>
-        );
+        }
+        else {
+            const comment = dish.comments.map((item) => {
+                return (
+                    <ul key={item.id} className="list-unstyled">
+                        <p>{item.comment}</p>
+                        <p>--{item.author},{new Intl.DateTimeFormat('en-US',{year:'numeric',month:'short',day:'2-digit'}).format(new Date(Date.parse(item.date)))}</p>
+                    </ul>
+                );
+            });
+            return (
+                <div className="col-12">
+                    <h4>Comments</h4>
+                    {comment}
+                </div>
+            );
+        }
     }
     render() {
         return (
-            <div className="row">
-                <div className="col-md-5 m-2">
-                    {this.renderDish(this.props.dishDetails)}
-                </div>
-                <div className="col-md-5 m-2">
-                    {this.renderComments(this.props.dishDetails)}
+            <div className="container">
+                <div className="row mt-5">
+                    <div className="col-md-5 m-1">
+                        {this.renderDish(this.props.dishDetails)}
+                    </div>
+                    <div className="col-md-5 m-1">
+                        {this.renderComments(this.props.dishDetails)}
+                    </div>
                 </div>
             </div>
         );
