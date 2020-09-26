@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand} from 'reactstrap';
 import Menu from './MenuComponent';
-import Dishdetail from './DishdetailComponent';
+// import Dishdetail from './DishdetailComponent';
 import { DISHES } from '../shared/dishes';
-
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
+import { Switch, Route, Redirect } from 'react-router-dom';
 class Main extends Component {
 
     constructor(props){
@@ -23,13 +24,14 @@ class Main extends Component {
     render() {
         return (
             <div >
-                <Navbar dark color="primary" expand="lg">
-                    <div className="container">
-                        <NavbarBrand href="/">FREE FOOD</NavbarBrand>
-                    </div>
-                </Navbar>
-                <Menu dishes={this.state.dishes} onClick={(dish) => this.onDishSelect(dish)}/>
-                <Dishdetail dishDetails={this.state.selectedDish}/>
+                <Header />
+                <Switch>
+                    <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes}/> } />
+                    <Redirect to='/App' />
+                </Switch>
+                {/* <Menu dishes={this.state.dishes} onClick={(dish) => this.onDishSelect(dish)}/> */}
+                {/* <Dishdetail dishDetails={this.state.selectedDish}/> */}
+                <Footer />
             </div>
         );
     }
