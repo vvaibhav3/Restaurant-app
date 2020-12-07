@@ -3,6 +3,7 @@ import { Card, CardBody, CardText, CardImg, CardTitle,Breadcrumb,
     BreadcrumbItem,Button,Modal, ModalHeader, ModalBody,Row,Col, Label } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 
 const required = (val) => val && val.length;
@@ -166,8 +167,27 @@ class Dishdetail extends Component {
 
     
     render(){
-        
+        if (this.props.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (this.props.errMess) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <h4>{this.props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+        else if (this.props.dish != null) {
     return (
+        
         <div className="container">
             <Breadcrumb>
                 <BreadcrumbItem>
@@ -193,6 +213,7 @@ class Dishdetail extends Component {
         </div>
     );
     }
+}
 }
 
 export default Dishdetail;
