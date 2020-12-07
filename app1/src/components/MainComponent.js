@@ -20,15 +20,9 @@ const mapStateToProps = state => {
 
 class Main extends Component {
 
-    constructor(props){
-        super(props);
-    }
-
     onDishSelect(dish) {
         this.setState({ selectedDish: dish });
     }
-
-
 
     render() {
 
