@@ -39,10 +39,9 @@ class Contact extends Component {
     // }
 
     handleSubmit(values) {
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+        // console.log('Current State is: ' + JSON.stringify(values));
+        this.props.postFeedback({values});
         this.props.resetFeedbackForm();
-        // event.preventDefault();
     }
     
 
@@ -190,7 +189,7 @@ class Contact extends Component {
                                         validators={{
                                             required, validEmail
                                         }}
-                                         />
+                                    />
                                     <Errors
                                         className="text-danger"
                                         model=".email"
@@ -208,8 +207,8 @@ class Contact extends Component {
                                         <Label check>
                                             <Control.checkbox model=".agree" name="agree"
                                                 className="form-check-input"
-                                                 /> {' '}
-                                                <strong>May we contact you?</strong>
+                                            /> {' '}
+                                            <strong>May we contact you?</strong>
                                         </Label>
                                     </div>
                                 </Col>
@@ -226,7 +225,8 @@ class Contact extends Component {
                                 <Col md={10}>
                                     <Control.textarea model=".message" id="message" name="message"
                                         rows="12"
-                                        className="form-control" />
+                                        className="form-control" 
+                                    />
                                 </Col>
                             </Row>
                             <Row className="form-group">

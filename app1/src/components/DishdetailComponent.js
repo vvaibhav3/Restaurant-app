@@ -99,7 +99,6 @@ class CommentForm extends Component{
                              <Col md={12}>
                                  <Control.textarea model=".comment" id="comment" 
                                      name="comment"
-                                     
                                      rows="6"
                                      className="form-control" />
                              </Col>
@@ -175,8 +174,6 @@ function RenderComments({comment, postComment, dishId}) {
 }
 
 class Dishdetail extends Component {
-
-    
     render(){
         if (this.props.isLoading) {
             return(
